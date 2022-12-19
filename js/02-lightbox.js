@@ -6,7 +6,7 @@ console.log(galleryItems);
 const galleryContainer = document.querySelector(`.gallery`);
 const markupGalleryContainer = galleryMarkup(galleryItems);
 galleryContainer.insertAdjacentHTML(`beforeend`, markupGalleryContainer);
-galleryContainer.addEventListener(`click`, onGalleryContainerClick);
+
 
 function galleryMarkup(galleryItems) {
   return galleryItems
@@ -23,17 +23,6 @@ function galleryMarkup(galleryItems) {
     })
     .join(``);
 }
-function onGalleryContainerClick(evt) {
-    evt.preventDefault();
 
-    if (!evt.target.classList.contains(`gallery__image`)) {
-        return;
-
-    }
 
     let gallery = new SimpleLightbox('.gallery a', {captionsData: `alt`, captionDelay: 250});
-gallery.on('show.simplelightbox', function () {
-	// do something…
-});
-console.log(evt.target);
-};

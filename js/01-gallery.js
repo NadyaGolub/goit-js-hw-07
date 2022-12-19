@@ -34,16 +34,24 @@ function onGalleryContainerClick(evt) {
     }
 
     const instance = basicLightbox.create(`
-    <img src="${evt.target.dataset.source}">
-`)
+    <img src="${evt.target.dataset.source}">`, {
+        onShow: instance => {
+            galleryContainer.addEventListener(`keydown`, onEscClick);
+        },
+        onClose: instance => {
+            galleryContainer.removeEventListener(`keydown`, onEscClick);   
+},
+    })
+    
 
     instance.show()
     
-    galleryContainer.addEventListener(`keydown`, (evt) => {
-        if (evt.code === `Escape`) {
-           instance.close() 
+   function onEscClick (evt) {
+        if (evt.key === `Escape`) {
+            instance.close() 
+            return
         }
-    })
+    }
 console.log(evt.target);
 };
 
